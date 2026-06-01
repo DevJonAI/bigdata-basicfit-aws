@@ -1,0 +1,13 @@
+# Ruleset: ruleset-basicfit-jonathan
+# Tabla: gym_membership_csv
+# Base de datos: db_basicfit_jonathan
+# Resultado: 6/8 reglas pasadas - Score 75%
+
+Rules = [
+    IsComplete "abonement_type",       # FAILED - nombre incorrecto en origen (es abonoment_type)
+    IsComplete "gender",               # PASSED - completitud 1.00
+    IsComplete "age",                  # PASSED - completitud 1.00
+    IsUnique "id",                     # PASSED - unicidad 1.00, sin duplicados
+    ColumnValues "age" between 16 and 80,  # FAILED - edad minima encontrada: 12 años
+    ColumnValues "visit_per_week" >= 0,    # PASSED - minimo 1.00
+    ColumnValues "
