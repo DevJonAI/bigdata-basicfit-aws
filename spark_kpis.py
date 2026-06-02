@@ -17,7 +17,7 @@ job.init(args['JOB_NAME'], args)
 # Recogemos el nombre del bucket que se pase por parámetro
 bucket_name = args['BUCKET_NAME']
 
-# 16. Lectura desde S3 utilizando el parámetro dinámico
+# Lectura desde S3 utilizando el parámetro dinámico
 df = spark.read \
     .option("header", "true") \
     .option("inferSchema", "true") \
