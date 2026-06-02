@@ -19,7 +19,7 @@ Proyecto final del Módulo Big Data. Pipeline batch completo en AWS para analiza
 
 Gym Membership Dataset de Kaggle (autor: Tarek Adam, licencia CC0).
 1.000 registros, 18 columnas, formato CSV.
-👉 https://www.kaggle.com/datasets/tarekAdam/gym-membership-dataset
+👉 https://www.kaggle.com/datasets/ka66ledata/gym-membership-dataset
 
 ## 🏗️ Arquitectura
 
