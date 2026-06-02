@@ -13,7 +13,7 @@ glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
-
+ 
 # Recogemos el nombre del bucket que se pase por parámetro
 bucket_name = args['BUCKET_NAME']
 
