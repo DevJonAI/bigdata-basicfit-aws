@@ -28,7 +28,12 @@ S3 raw → Glue Crawler → Glue Data Quality → Glue ETL Job → S3 processed 
 ## 📁 Estructura del repositorio
 
 - `etl_job.py` — Script del ETL Job de Glue Studio
-- `spark_kpis.py` — Script del job de Spark para calcular KPIs
+- `spark_kpis.py` — Script del job de Spark (v2.0) parametrizado de forma dinámica y optimizado con salida en formato Parquet
 - `ruleset_dqdl.txt` — Reglas de calidad de AWS Glue Data Quality
 - `athena_queries.sql` — Consultas SQL ejecutadas en Athena
 - `screenshots/` — Capturas de evidencia de cada fase
+
+- ## 🔧 Optimizaciones Técnicas (Buenas Prácticas)
+
+- **Parametrización Dinámica:** Se ha refactorizado el script `spark_kpis.py` utilizando `getResolvedOptions` para recibir el argumento `--BUCKET_NAME` en tiempo de ejecución. Esto elimina las rutas fijas (*hardcodeadas*) del código, haciendo que el pipeline sea seguro, reutilizable y listo para producción en cualquier entorno de AWS.
+- **Evolución de Formatos de Almacenamiento:** El almacenamiento de salida final del Job de Spark se ha actualizado a formato columnar **Apache Parquet**. Aunque el despliegue inicial y las consultas de Athena reflejados en la carpeta `screenshots/` se ejecutaron utilizando formato CSV, esta mejora queda implementada para optimizar drásticamente el rendimiento de las consultas y reducir los costes de lectura en S3 en los siguientes ciclos de ejecución.
