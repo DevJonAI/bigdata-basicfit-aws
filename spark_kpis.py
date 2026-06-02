@@ -6,18 +6,22 @@ from awsglue.context import GlueContext
 from awsglue.job import Job
 from pyspark.sql import functions as F
 
-args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+# 9. Obtener los argumentos del Job (Añadimos 'BUCKET_NAME')
+args = getResolvedOptions(sys.argv, ['JOB_NAME', 'BUCKET_NAME'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
-# Lectura desde S3
+# Recogemos el nombre del bucket que se pase por parámetro
+bucket_name = args['BUCKET_NAME']
+
+# 16. Lectura desde S3 utilizando el parámetro dinámico
 df = spark.read \
     .option("header", "true") \
     .option("inferSchema", "true") \
-    .csv("s3://bigdata-basicfit-jonathan/raw/gym_membership.csv")
+    .csv(f"s3://{bucket_name}/raw/gym_membership.csv")
 
 # Filtro: eliminar socios menores de 16
 df_filtrado = df.filter(F.col("age") >= 16)
