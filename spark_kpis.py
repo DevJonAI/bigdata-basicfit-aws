@@ -43,12 +43,11 @@ df_kpis = df_segmentado.groupBy("abonoment_type").agg(
 
 df_kpis.show()
 
-# Guardar resultado en S3
+# Guardar resultado en S3 (Corregido con la variable dinámica y formato Parquet)
 df_kpis.write \
     .mode("overwrite") \
-    .option("header", "true") \
-    .csv("s3://bigdata-basicfit-jonathan/analytics/kpis_por_abono/")
+    .parquet(f"s3://{bucket_name}/analytics/kpis_por_abono/")
 
-print("Proceso Spark completado. Resultados guardados en S3.")
+print("Proceso Spark completado. Resultados guardados en formato Parquet en S3.")
 
 job.commit()
