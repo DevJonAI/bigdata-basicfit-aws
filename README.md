@@ -1,39 +1,41 @@
-# 🏋️ Big Data Pipeline en AWS — Análisis de socios Basic-Fit
+# Big Data Pipeline on AWS — Basic-Fit Member Analysis
 
-Proyecto final del Módulo Big Data. Pipeline batch completo en AWS para analizar el comportamiento de socios de gimnasio.
+End-to-end batch pipeline on AWS to analyze gym member behavior using real-world data.
 
-> ⚠️ Este proyecto es académico y no está afiliado oficialmente a Basic-Fit.
+> This is an academic project and is not officially affiliated with Basic-Fit.
 
-## 🛠️ Servicios AWS utilizados
+## AWS Services Used
 
-- **Amazon S3** — Almacenamiento por zonas: raw, processed, dq-results, analytics
-- **AWS Glue Crawler** — Catalogación automática del dataset
-- **AWS Glue Data Catalog** — Registro del esquema de la tabla
-- **AWS Glue Data Quality** — Validación con 8 reglas DQDL (score 75%)
-- **AWS Glue Studio** — ETL Job visual con transformaciones
-- **AWS Glue Spark** — Procesamiento analítico y cálculo de KPIs
-- **Amazon Athena** — Consultas SQL sobre S3
-- **Power BI Desktop** — Dashboard final con KPIs e insights
+- **Amazon S3** — Zone-based storage: raw, processed, dq-results, analytics
+- **AWS Glue Crawler** — Automatic dataset cataloging
+- **AWS Glue Data Catalog** — Table schema registry
+- **AWS Glue Data Quality** — Validation with 8 DQDL rules (score 75%)
+- **AWS Glue Studio** — Visual ETL Job with transformations
+- **AWS Glue Spark** — Analytical processing and KPI calculation
+- **Amazon Athena** — SQL queries directly on S3
+- **Power BI Desktop** — Final dashboard with KPIs and insights
 
-## 📊 Dataset
+## Dataset
 
-Gym Membership Dataset de Kaggle (autor: Tarek Adam, licencia CC0).
-1.000 registros, 18 columnas, formato CSV.
-👉 https://www.kaggle.com/datasets/ka66ledata/gym-membership-dataset
+Gym Membership Dataset from Kaggle (author: Tarek Adam, license CC0).
+1,000 records · 18 columns · CSV format.
 
-## 🏗️ Arquitectura
+[View on Kaggle](https://www.kaggle.com/datasets/ka66ledata/gym-membership-dataset)
+
+## Architecture
 
 S3 raw → Glue Crawler → Glue Data Quality → Glue ETL Job → S3 processed → Spark Job → S3 analytics → Athena → Power BI
 
-## 📁 Estructura del repositorio
+## Repository Structure
 
-- `etl_job.py` — Script del ETL Job de Glue Studio
-- `spark_kpis.py` — Script del job de Spark (v2.0) parametrizado de forma dinámica y optimizado con salida en formato Parquet
-- `ruleset_dqdl.txt` — Reglas de calidad de AWS Glue Data Quality
-- `athena_queries.sql` — Consultas SQL ejecutadas en Athena
-- `screenshots/` — Capturas de evidencia de cada fase
+- `etl_job.py` — Glue Studio ETL Job script
+- `spark_kpis.py` — Spark job script (v2.0), dynamically parameterized with Parquet output
+- `ruleset_dqdl.txt` — AWS Glue Data Quality ruleset
+- `athena_queries.sql` — SQL queries executed in Athena
+- `screenshots/` — Evidence captures for each pipeline phase
 
-- ## 🔧 Optimizaciones Técnicas (Buenas Prácticas)
+## Technical Optimizations
 
-- **Parametrización Dinámica:** Se ha refactorizado el script `spark_kpis.py` utilizando `getResolvedOptions` para recibir el argumento `--BUCKET_NAME` en tiempo de ejecución. Esto elimina las rutas fijas (*hardcodeadas*) del código, haciendo que el pipeline sea seguro, reutilizable y listo para producción en cualquier entorno de AWS.
-- **Evolución de Formatos de Almacenamiento:** El almacenamiento de salida final del Job de Spark se ha actualizado a formato columnar **Apache Parquet**. Aunque el despliegue inicial y las consultas de Athena reflejados en la carpeta `screenshots/` se ejecutaron utilizando formato CSV, esta mejora queda implementada para optimizar drásticamente el rendimiento de las consultas y reducir los costes de lectura en S3 en los siguientes ciclos de ejecución.
+**Dynamic Parameterization:** The `spark_kpis.py` script was refactored using `getResolvedOptions` to receive the `--BUCKET_NAME` argument at runtime. This eliminates hardcoded paths, making the pipeline secure, reusable and production-ready across any AWS environment.
+
+**Storage Format Evolution:** The final output of the Spark Job was upgraded to columnar **Apache Parquet** format. Although the initial deployment and Athena queries shown in the `screenshots/` folder were executed using CSV, this improvement is implemented to significantly optimize query performance and reduce S3 read costs in subsequent execution cycles.
