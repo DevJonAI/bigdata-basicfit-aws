@@ -36,20 +36,20 @@ S3 raw → Glue Crawler → Glue Data Quality → Glue ETL Job → S3 processed 
 
 | # | Description |
 |---|---|
-| ![01](screenshots/01_glue_data_quality_results.png) | Glue Data Quality — Results |
-| ![02](screenshots/02_powerbi_dashboard.png) | Power BI Dashboard |
-| ![03](screenshots/03_s3_bucket_zones.png) | S3 Bucket Zones |
-| ![04](screenshots/04_glue_crawler.png) | Glue Crawler |
-| ![05](screenshots/05_glue_data_catalog_tables.png) | Glue Data Catalog Tables |
-| ![06](screenshots/06_glue_dq_ruleset.png) | Glue DQ Ruleset |
-| ![07](screenshots/07_glue_dq_run_history.png) | Glue DQ Run History |
-| ![08](screenshots/08_glue_dq_score_snapshot.png) | Glue DQ Score Snapshot |
-| ![09](screenshots/09_glue_etl_job_script.png) | Glue ETL Job Script |
-| ![10](screenshots/10_glue_etl_job_run_succeeded.png) | Glue ETL Job — Run Succeeded |
-| ![11](screenshots/11_glue_spark_kpis_script.png) | Glue Spark KPIs Script |
-| ![12](screenshots/12_athena_query_members_by_type.png) | Athena — Members by Type |
-| ![13](screenshots/13_athena_query_avg_time_visits.png) | Athena — Avg Time & Visits |
-| ![14](screenshots/14_athena_query_services_usage.png) | Athena — Services Usage |
+| ![01](screenshots/03_s3_bucket_zones.png) | S3 Bucket Zones |
+| ![02](screenshots/04_glue_crawler.png) | Glue Crawler |
+| ![03](screenshots/05_glue_data_catalog_tables.png) | Glue Data Catalog Tables |
+| ![04](screenshots/06_glue_dq_ruleset.png) | Glue DQ Ruleset |
+| ![05](screenshots/07_glue_dq_run_history.png) | Glue DQ Run History |
+| ![06](screenshots/08_glue_dq_score_snapshot.png) | Glue DQ Score Snapshot |
+| ![07](screenshots/01_glue_data_quality_results.png) | Glue Data Quality — Results |
+| ![08](screenshots/09_glue_etl_job_script.png) | Glue ETL Job Script |
+| ![09](screenshots/10_glue_etl_job_run_succeeded.png) | Glue ETL Job — Run Succeeded |
+| ![10](screenshots/11_glue_spark_kpis_script.png) | Glue Spark KPIs Script |
+| ![11](screenshots/12_athena_query_members_by_type.png) | Athena — Members by Type |
+| ![12](screenshots/13_athena_query_avg_time_visits.png) | Athena — Avg Time & Visits |
+| ![13](screenshots/14_athena_query_services_usage.png) | Athena — Services Usage |
+| ![14](screenshots/02_powerbi_dashboard.png) | Power BI Dashboard |
 
 ## Repository Structure
 
