@@ -1,13 +1,39 @@
-# Ruleset: ruleset-basicfit-jonathan
-# Tabla: gym_membership_csv
-# Base de datos: db_basicfit_jonathan
-# Resultado: 6/8 reglas pasadas - Score 75%
+# =============================================================================
+# AWS Glue Data Quality Ruleset — Basic-Fit Member Analysis
+# Ruleset name : ruleset-basicfit-jonathan
+# Table        : gym_membership_csv
+# Database     : db_basicfit_jonathan
+# Result       : 6/8 rules passed — Score 75%
+# =============================================================================
 
 Rules = [
-    IsComplete "abonement_type",       # FAILED - nombre incorrecto en origen (es abonoment_type)
-    IsComplete "gender",               # PASSED - completitud 1.00
-    IsComplete "age",                  # PASSED - completitud 1.00
-    IsUnique "id",                     # PASSED - unicidad 1.00, sin duplicados
-    ColumnValues "age" between 16 and 80,  # FAILED - edad minima encontrada: 12 años
-    ColumnValues "visit_per_week" >= 0,    # PASSED - minimo 1.00
-    ColumnValues "
+
+    # Rule 1: FAILED
+    # Column name in the source file is 'abonoment_type' (typo in the dataset).
+    # Glue could not evaluate completeness against the expected field name.
+    IsComplete "abonement_type",
+
+    # Rule 2: PASSED — completeness 1.00
+    IsComplete "gender",
+
+    # Rule 3: PASSED — completeness 1.00
+    IsComplete "age",
+
+    # Rule 4: PASSED — uniqueness 1.00, no duplicate IDs found
+    IsUnique "id",
+
+    # Rule 5: FAILED
+    # Minimum age found in dataset: 12 years.
+    # Records below 16 are filtered out in the ETL job as a corrective measure.
+    ColumnValues "age" between 16 and 80,
+
+    # Rule 6: PASSED — minimum value 1.00
+    ColumnValues "visit_per_week" >= 0,
+
+    # Rule 7: PASSED — minimum value 1.00
+    ColumnValues "visit_stars" between 1 and 5,
+
+    # Rule 8: PASSED — completeness 1.00
+    IsComplete "personal_training"
+
+]
